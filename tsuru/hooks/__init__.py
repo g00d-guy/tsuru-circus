@@ -45,7 +45,7 @@ def run_commands(name, **kwargs):
     for command in cmds:
         try:
             commands = ["/bin/bash", "-c"]
-            cmd = "HOME=/app && for file in '$HOME'/.profile.d/*; do source '$file'; done && source /home/application/apprc && {}"
+            cmd = "HOME=/app && for file in $HOME/.profile.d/*; do source $file; done && source /home/application/apprc && {}"
             commands.append(cmd.format(command))
             result = subprocess.check_output(commands,
                                              stderr=subprocess.STDOUT,

@@ -47,6 +47,7 @@ def run_commands(name, **kwargs):
             commands = ["/bin/bash", "-c"]
             cmd = "HOME=/app && for file in $HOME/.profile.d/*; do source $file; done && source /home/application/apprc && {}"
             commands.append(cmd.format(command))
+            Stream(watcher_name=watcher.name)({"data": " ---> Execute {}".format(' '.join(commands))})
             result = subprocess.check_output(commands,
                                              stderr=subprocess.STDOUT,
                                              cwd=watcher.working_dir,
